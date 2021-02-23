@@ -2,11 +2,9 @@ package edu.touro.mco364;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class OthelloConsoleGameTest {
 
-    OthelloConsoleGame test = new OthelloConsoleGame();
+    private OthelloConsoleGame test = new OthelloConsoleGame();
 
     @Test
     void startGame() { // It is hard to make asserts for the console game methods since it is displaying dynamic output, but we can still test it visually.

@@ -5,21 +5,21 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class OthelloModelTest {
 
-    OthelloModel test = new OthelloModel();
+    private OthelloModel test = new OthelloModel();
 
     @org.junit.jupiter.api.Test
     void setupBoard()
     {
         test.setupBoard();
-        assertEquals(CellState.W, test.grid[3][3]);
-        assertEquals(CellState.W, test.grid[4][4]);
-        assertEquals(CellState.B, test.grid[3][4]);
-        assertEquals(CellState.B, test.grid[4][3]);
-        assertEquals(CellState.NONE, test.grid[5][2]);
-        assertEquals(CellState.NONE, test.grid[3][7]);
-        assertEquals(CellState.NONE, test.grid[6][3]);
-        assertEquals(CellState.NONE, test.grid[1][1]);
-        assertEquals(CellState.NONE, test.grid[7][4]);
+        assertEquals("W", test.getCelState(3,3));
+        assertEquals("W", test.getCelState(4,4));
+        assertEquals("B", test.getCelState(3,4));
+        assertEquals("B", test.getCelState(4,3));
+        assertEquals(" ", test.getCelState(5,2));
+        assertEquals(" ", test.getCelState(3,7));
+        assertEquals(" ", test.getCelState(6,3));
+        assertEquals(" ", test.getCelState(1,1));
+        assertEquals(" ", test.getCelState(7,4));
 
     }
 
@@ -28,18 +28,21 @@ class OthelloModelTest {
     {
         test.setupBoard();
         test.makeMove(4,3 ,CellState.B);
-        assertEquals(CellState.B, test.grid[3][2]); //We have to subtract 1 in our assert since we subtracted 1 in our makeMove method to match the board
+        assertEquals("B",test.getCelState(4,3));
         test.makeMove(3,5,CellState.W);
-        assertEquals(CellState.W, test.grid[2][4]);
+        assertEquals("W", test.getCelState(3,5));
     }
 
     @org.junit.jupiter.api.Test
     void isValid()
     {
         test.setupBoard();
-        //assertTrue(test.isValid(3,2,CellState.B));
-        test.makeMove(4,3,CellState.B);
-        assertTrue(test.isValid(2,2,CellState.W));
+        assertTrue(test.isValid(5,4,CellState.B));
+        assertTrue(test.isValid(3,2,CellState.B));
+        assertTrue(test.isValid(2,3,CellState.B));
+        assertTrue(test.isValid(4,5,CellState.B));
+        assertFalse(test.isValid(2,6,CellState.W));
+        assertFalse(test.isValid(-2,13,CellState.W));
     }
 
     @org.junit.jupiter.api.Test
@@ -69,8 +72,21 @@ class OthelloModelTest {
     {
         test.setupBoard();
         test.makeMove(4,3,CellState.B);
-        assertEquals(CellState.B, test.grid[3][3]);
+        assertEquals("B", test.getCelState(4,3));
         test.makeMove(3,5,CellState.W);
-        assertEquals(CellState.W, test.grid[3][4]);
+        assertEquals("W", test.getCelState(3,5));
+    }
+
+    @org.junit.jupiter.api.Test
+    void getCellState()
+    {
+        test.setupBoard();
+        String actual = test.getCelState(3,4);
+        assertEquals("B", actual);
+        String actual2 = test.getCelState(4,4);
+        assertEquals("W", actual2);
+        String actual3 = test.getCelState(7,3);
+        assertEquals(" ", actual3);
+
     }
 }

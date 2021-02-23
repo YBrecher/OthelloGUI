@@ -1,17 +1,18 @@
 package edu.touro.mco364;
 
-import javax.swing.*;
-import java.sql.SQLOutput;
-import java.util.Arrays;
-import java.util.Scanner;
-
 
 public class Main {
 
-    public static void main(String[] args) {
-	OthelloConsoleGame test = new OthelloConsoleGame();
-	test.startGame();
 
+
+    public static void main(String[] args) {
+//        OthelloConsoleGame test = new OthelloConsoleGame();
+//        test.startGame();
+//      OthelloModelInterface model = new OthelloModel();
+////      new OthelloGUI(model); //dependency injection ... c-tor injection
+        OthelloModelInterface model = new OthelloModel();
+        new OthelloGUI(model);
 
     }
 }
+
